@@ -1,0 +1,618 @@
+\documentclass[12pt, a4paper]{book}
+
+\setlength{\voffset}{-25.4mm}
+\setlength{\hoffset}{-25.4mm}
+
+\setlength{\topmargin}{20mm}
+\setlength{\oddsidemargin}{20mm}
+\setlength{\evensidemargin}{20mm}
+\setlength{\parskip}{5mm}
+\setlength{\textheight}{25.7cm}
+\setlength{\textwidth}{17cm}
+\setlength{\parindent}{0cm}
+
+\makeindex
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\mbox{\ }
+\vspace{5cm}
+
+{\Huge \LaTeX}
+
+\vspace{1cm}
+
+{\huge Fundamentals}
+\end{titlepage}
+
+%\tableofcontents
+
+%\listoffigures
+
+%\listoftables
+
+\section*{Introduction}
+\LaTeX\ is an advanced document production system especially designed to typeset mathematically based documents.  \LaTeX\ is effectively a programming language based on the \TeX\ document production system which has been around for over $20$ years.
+
+How does it compare to, say, Microsoft Word?  Well, \LaTeX\ was designed from the ground up for document production.  It can handle documents of arbitrary size and has many advanced features not avaliable in any other package.  Its benefits include:
+\begin{itemize}
+\item Arbitrary document size
+\item Cross platform
+\item Basic documents are TEXT files
+\item Highly advanced macros
+\item Massive archive of avaliable add-ons and styles
+\item Ideal for documents with large amounts of mathematics, figures and tables
+\item Advanced referencing and citation capabilities
+\item Easy to use
+\item Produce press quality documents
+\item Used by journals and publishing houses around the world
+\item FREE
+\end{itemize}
+
+\LaTeX\ provides you with complete control over how your document will look and can be compiled into almost any format: PDF; Postscript; HTML; GIF etc.  There are free implementation of \LaTeX\ on PC's, Mac's, Unix and almost all operating systems, all you need do is download one.
+
+Once you have a version of \LaTeX\ on your computer you are able to write documents in almost any editor: MS Word; Word Pad; Text editor; WinEDT; Emacs; VI; and even an email program if you want.  With your document finished, you simply run it through the LaTeX engine and out pops your PDF or Postscript document, ready for publishing.
+
+
+
+\section*{Building a document}
+As eluded to, a \LaTeX\ document consists of text documents, which need to be build into a final document.  You are free to write the document in any text editor and save the file as a text file, however most \LaTeX\ implementations come with a reasonable editor.  On the Mac's you should try Alpha and on the PC's try WinEDT.  
+
+Once you create a \LaTeX\ file (\texttt{filename.tex}) you need to build it into the document format you want.  Usually, your \LaTeX\ implementation will have a ``compile'' or ``build'' or ``\LaTeX'' button (on Unix systems, type the command \texttt{latex filename.tex}).  Press this and it will compile your document.  If there are errors, it will stop, tell you the line where the error is and allow you to correct it.
+
+Running \LaTeX\ will produce many file, the most important is the DVI file (\texttt{filename.dvi}).  This is your document in a file for viewing on a screen.  You can then convert the DVI file to a PostScript (\texttt{filename.ps}) or PDF (\texttt{filename.pdf}) document using \texttt{DVIPS} or \texttt{DVI2PDF}.  You run these, usually be pressing the appropriate button in your \LaTeX\ program.
+
+Once you have the the PostScript of PDF file you are free to print or view the file.
+
+\LaTeX\ has very advanced referencing, citations, tables of contents etc.  To get these functioning correctly, you often have to build your document 2 or 3 times.  If the citations or references are not correct, run \LaTeX\ again on your document.
+
+
+
+\section*{A few basics}
+\LaTeX\ consists of text with embedded commands which control how the text will appear on the printed page, a little like HTML.  Consequently, there are special character which designate these embedded commands.  The special characters are: 
+\begin{verbatim}          # $ % & ~ _ ^ \ { }\end{verbatim}
+
+To include one of these special characters in your text, you need to preceed it with a `\verb+\+' as in \verb+\#+, \verb+\$+, \verb+\%+, \verb+\&+, \verb+\_+, \verb+\{+ and \verb+\}+.  Unfortunately, to include the characters \verb+~+, \verb+^+ and \verb+\+ you need to use the \verb+\ttfamily+ declaration to produce text in type writer style or be in an appropriate math mode.  This can be either be via the \verb+verbatim+ environment or the \verb+\verb+ command.  These will be discussed later.
+
+The \% symbol is a comment and is ignored by the document processor.
+
+
+
+\section*{Basic layout of a document}
+A \LaTeX\ document is a text document with command and text throughout.  All commands begin with a \verb+\+.  To start a document you need to choose a ``class'' which will define the underlaying layout of the document.  For example
+\begin{verbatim}
+\documentclass{book}
+\end{verbatim}
+will provide the basic structure of a book and
+\begin{verbatim}
+\documentclass{article}
+\end{verbatim}
+will provide the basic structure of a journal article.  There are hundreds of possible document classes or styles which are generally avaliable from the internet.  You then need to define the document environment
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+\begin{verbatim}
+\documentclass{book}
+
+  % Packages and other definitions go here
+
+\begin{document}
+Text goes here
+\end{document}
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+Different classes have produce different behaviour for \verb+\part+, \verb+\chapter+, \verb+\section+, \verb+\subsection+, \verb+\subsubsection+ and the \verb+\tableofcontents+
+
+Following are examples of a basic book, article and letter document.  Three of the standard \LaTeX\ classes
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+\begin{verbatim}
+\documentclass[a4paper,12pt]{book}
+\makeindex
+\begin{document}
+\begin{titlepage}
+\Large
+\centering
+    This is a book title page \\
+\vspace{2cm}
+   Which you have complete control over.
+\end{titlepage}
+\tableofcontents
+\section*{Introduction}
+    This is the introduction
+\section*{Middle}
+    Stuff goes here
+\section*{End}
+    We finish up
+\end{document}
+\end{verbatim}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\begin{minipage}[t]{14.5cm}
+\begin{verbatim}
+\documentclass[a4paper,12pt]{letter}
+\begin{document}
+\address{Stuart Midgley \\ ANU}
+\signature{Stuart Midgley}
+\begin{letter}{Karren Visser \\ ANU}
+\opening{Dear Karen}
+    I really enjoyed the \LaTeX\ course.
+\closing{Regards}
+\end{letter}
+\end{document}
+\end{verbatim}
+\end{minipage}
+
+\vspace{0.5cm}
+
+\begin{minipage}[t]{14.5cm}
+\begin{verbatim}
+\documentclass[a4paper,12pt,twocolumn]{article}
+\begin{document}
+\author{Stuart Midgley}
+\title{Introduction to the \LaTeX\ article class}
+\maketitle
+\begin{abstract}
+    This is an abstract of a demo paper with some extra
+    text to show how the lines wrap and spans multiple columns
+\end{abstract}
+\subsection*{Introduction}
+    This is the intro.  All the text is in 2 columns which
+    are automatically controlled by the \LaTeX\ system, with
+    out intervention by the author.
+\subsection*{Middle}
+    More stuff goes here
+\subsection*{Conclusion}
+    We finish up
+\end{document}
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+As you can see, from the three examples, each class has its own particular commands and layout style.
+
+
+
+\section*{Controlling margins and line spacing}
+\LaTeX\ by default uses US Letter paper and sets a 1 inch left and top margin.  To reset the margins to zero and then define your own margins, text width and text height use the following:
+\begin{verbatim}
+\setlength{\voffset}{-25.4mm}       % Reset the top margin back to zero
+\setlength{\hoffset}{-25.4mm}       % Reset the left margin to zero
+\setlength{\topmargin}{20mm}        % Top margin of 20mm
+\setlength{\oddsidemargin}{20mm}    % Odd side left margin to 20mm
+\setlength{\evensidemargin}{20mm}   % Even side left margin to 20mm
+\setlength{\parskip}{5mm}           % Space between paragraphs to be 5mm
+\setlength{\textheight}{25.7cm}     % Text height to be 25.7cm (an A4 
+                                        page is 25.7cm+2cm+2cm=29.7cm long)
+\setlength{\textwidth}{17cm}        % Text width to be 17cm (an A4 page
+                                        is 17cm+2cm+2cm=21cm wide)
+\end{verbatim}
+
+
+
+\section*{Paragraphs, lines and spaces}
+\LaTeX\ has the concept of a paragraph and line.  To seperate paragraphs, leave a double blank line while to start a new line use a double backslash \verb+\\+.  For example:
+\begin{center}
+\begin{minipage}[t]{7cm}
+\setlength{\parskip}{5mm}
+\setlength{\parindent}{1cm}
+This is a new line \\ embedded
+in text while \\
+this is not.
+
+A double space makes a new paragraph
+that moves the text to the next
+line and indents the line a certain
+amount.  All the spacings, margins and
+indents can be controlled by the
+advanced user.
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{8cm}
+\begin{verbatim}
+This is a new line \\ embedded
+in text while \\
+this is not.
+
+A double space makes a new paragraph
+that moves the text to the next
+line and indents the line a certain
+amount.  All the spacings, margins and
+indents can be controlled by the
+advanced user.
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+\LaTeX\ ignores all other carriage returns or line breaks and assumes that unbroken text forms 1 line.  \LaTeX\ also ignores multiple spaces.  That is, 1 space ``\ '' is the same as 10 ``\         '' spaces.  To include these spaces, you need to preceed them with a \verb+\+ as in \verb+\ \ \ \ \ \ \ \ \ \ + will produce 10 spaces ``\ \ \ \ \ \ \ \ \ \ ''.
+
+You can insert your own extra spaces through the \verb+\hspace{1cm}+ and \verb+\vspace(1cm}+ commands.
+\begin{center}
+\begin{minipage}[t]{7cm}
+some text \hspace{1cm} with a
+1cm horizontal space and \\
+\vspace{1cm} \\
+a 1cm vertical space
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+some text \hspace{1cm} with a
+1cm horizontal space and \\
+\vspace{1cm} \\
+a 1cm vertical space
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+
+
+\section*{Fonts and type style}
+\LaTeX\ gains most of its font information from the class or style that you are using.  Often, however, you may wish to change the font or type style while writing a document.
+
+In normal text mode
+\begin{center}
+\begin{minipage}[t]{7cm}
+\textrm{Roman} \\
+\textit{Italic} \\
+\textbf{Bold} \\
+\textsl{Slant} \\
+\textsc{Caps} \\
+\texttt{Type} \\
+\textsf{Sans Serif}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+\textrm{Roman}
+\textit{Italic}
+\textbf{Bold}
+\textsl{Slant}
+\textsc{Caps}
+\texttt{Type}
+\textsf{Sans Serif}
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+In math mode
+\begin{center}
+\begin{minipage}[t]{7cm}
+$\mathrm{Roman}$ \\
+$\mathit{Italic}$ \\
+$\mathbf{Bold}$ \\
+$\mathtt{Type}$ \\
+$\mathsf{Sans Serif}$ \\
+$\mathcal{CALLIGRAPHY}$
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+$\mathrm{Roman}$
+$\mathit{Italic}$
+$\mathbf{Bold}$
+$\mathtt{Type}$
+$\mathsf{Sans Serif}$
+$\mathcal{CALLIGRAPHY}$
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+To change type size
+\begin{center}
+\begin{minipage}[t]{7cm}
+{\tiny Tiny} \\
+{\scriptsize Script} \\
+{\footnotesize Foot note} \\
+{\small Small} \\
+{\normalsize Normal} \\
+{\large Large} \\
+{\Large Larger} \\
+{\LARGE LARGER} \\
+{\huge Huge} \\
+{\Huge Huger}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+{\tiny Tiny}
+{\scriptsize Script}
+{\footnotesize Foot note}
+{\small Small}
+{\normalsize Normal}
+{\large Large}
+{\Large Larger}
+{\LARGE LARGER}
+{\huge Huge}
+{\Huge Huger}
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+
+
+\section*{Environments and inline}
+A common feature of \LaTeX\ is the environment.  Environments are started with \verb+\begin{...}+ and finished with \verb+\end{...}+.  The environment then applies to everything between the begin and end statements.  Examples of environments are
+\begin{center}
+\begin{minipage}[t]{7cm}
+Itemised list:
+\begin{itemize}
+\item item 1
+\item item 2
+\end{itemize}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\ 
+\begin{verbatim}
+\begin{itemize}
+\item item 1
+\item item 2
+\end{itemize}
+\end{verbatim}
+\end{minipage}
+
+\begin{minipage}[t]{7cm}
+Enumerated list:
+\begin{enumerate}
+\item item 1
+\item item 2
+\end{enumerate}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+
+\begin{enumerate}
+\item item 1
+\item item 2
+\end{enumerate}
+\end{verbatim}
+\end{minipage}
+
+\begin{minipage}[t]{7cm}
+Verbatim:
+\begin{verbatim}
+    preformatted text works
+as       a type writer
+which
+
+is
+
+different to normal text
+\end{verbatim}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\ \\
+\verb+\begin{verbatim}+
+\begin{verbatim}
+    preformatted text works
+as       a type writer
+which
+
+is
+
+different to normal text
+\end{verbatim}
+\verb+\end{verbatim}+
+\end{minipage}
+
+\begin{minipage}[t]{7cm}
+Equation:
+\begin{equation}
+x^{2}+1=y
+\end{equation}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\ 
+\begin{verbatim}
+\begin{equation}
+x^{2}+1=y
+\end{equation}
+\end{verbatim}
+\end{minipage}
+
+\begin{minipage}[t]{7cm}
+Centered text:
+\begin{center}
+This text is\\
+centered
+\end{center}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+
+\begin{center}
+This text is\\
+centered
+\end{center}
+\end{verbatim}
+\end{minipage}
+
+\end{center}
+
+Often it is desirable to have the environment inline with text.  This is achieved usually with a command and the text in braces:
+\begin{center}
+\begin{minipage}[t]{7cm}
+\setlength{\parskip}{5mm}
+an equation $x^{2}+1=y$ in line
+
+and verbatim \verb+text    inline+ is a 
+little different
+
+you can \textbf{do bold} text and \textit{italic} with different {\Large sizes} {\tiny which can be} added easily.
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+an equation $x^{2}+1=y$ in line
+
+and verbatim \verb+text    inline+
+is a little different
+
+you can \textbf{do bold} text and
+\textit{italic} with different 
+{\Large sizes} {\tiny which can be}
+added easily.
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+
+
+\section*{Special characters and equations}
+\LaTeX\ is strongest at special characters and equations.  There are 3 different equation environments: inline equation; equation environment; and equation array (for multi-line equations)
+\begin{center}
+\begin{minipage}[t]{7cm}
+An inline equation $f(x)=\frac{1}{\alpha} \sum_{n=1}^{100} x^{n}$
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+An inline equation
+$f(x)=\frac{1}{\alpha}
+\sum_{n=1}^{100} x^{n}$
+\end{verbatim}
+\end{minipage}
+
+\begin{minipage}[t]{7cm}
+Equation environment:
+\begin{equation}
+f(x)=\frac{1}{\alpha} \sum_{n=1}^{100} x^{n}
+\end{equation}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+\begin{equation}
+f(x)=\frac{1}{\alpha}
+\sum_{n=1}^{100} x^{n}
+\end{equation}
+\end{verbatim}
+\end{minipage}
+
+\begin{minipage}[t]{7cm}
+Equation array environment:
+\begin{eqnarray}
+f(x) & = & \frac{1}{\alpha} \sum_{n=1}^{100} x^{n} \\
+ & = & \alpha^{-1} \sum_{n=1}^{100} \left( x^{2} \right)^{\frac{n}{2}}
+\end{eqnarray}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+\begin{eqnarray}
+f(x) & = & \frac{1}{\alpha}
+\sum_{n=1}^{100} x^{n} \\
+ & = & \alpha^{-1} \sum_{n=1}^{100}
+\left( x^{2} \right)^{\frac{n}{2}}
+\end{eqnarray}
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+There are also a large number of symbols avaliable for use.  In the math environment
+\begin{center}
+\begin{minipage}[t]{3cm}
+$\alpha$ $\beta$ $\pi$
+
+$\pm$ $\times$ $\uplus$
+
+$\leq$ $\ll$ $\succeq$
+
+$\leftarrow$ $\Longleftrightarrow$ $\notin$
+
+$\aleph$ $\nabla$ $\infty$
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{11cm}
+\begin{verbatim}
+$\alpha$ \beta$ $\pi$
+$\pm$ $\times$ $\uplus$
+$\leq$ $\ll$ $\succeq$
+$\leftarrow$ $\Longleftrightarrow$ $\notin$
+$\aleph$ $\nabla$ $\infty$
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+In regular text mode
+\begin{center}
+\begin{minipage}[t]{3cm}
+\`{o} \"{a} \t{oo} \b{i}
+
+\oe \ \l \ \ss
+
+\dag \ \S \ \copyright
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{11cm}
+\begin{verbatim}
+\`{o} \"{a} \t{oo} \b{i}
+\oe \l \ss
+\dag \S \copyright
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+\LaTeX\ also has smart quotes ``''.  To use the smart quotes, you need to enter a double ` followed by a double '
+\begin{center}
+\begin{minipage}[t]{7cm}
+The ``smart quotes'' look nice
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+The ``smart quotes'' look nice
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+For a complete description of symbols see ``\LaTeX\ A Document Preparation System'' by Leslie Lamport.
+
+
+
+\section*{Resources}
+The ideal reference book for getting started with \LaTeX\
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+\LaTeX\ A Document Preparation System 2nd Edition\\
+Leslie Lamport\\
+Addison Wesley 1994
+\end{minipage}
+\end{center}
+
+The definitive guide to all things \LaTeX\
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+The \LaTeX\ Companion\\
+Goossens Mittelbach Samarin\\
+Addison Wesley 1994
+\end{minipage}
+\end{center}
+
+Large online resources with class files, fonts and distributions
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+\texttt{http://www.ctan.org}
+\end{minipage}
+\end{center}
+
+\newpage
+
+
+\section*{Exercises}
+
+Try and recreate the letter and article attached to the back of this manual yourself.  They will help you understand the above material.
+
+
+
+\end{document}

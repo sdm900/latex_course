@@ -1,0 +1,384 @@
+\documentclass[12pt, a4paper]{book}
+
+\usepackage{epsfig}
+
+\setlength{\voffset}{-25.4mm}
+\setlength{\hoffset}{-25.4mm}
+
+\setlength{\topmargin}{20mm}
+\setlength{\oddsidemargin}{20mm}
+\setlength{\evensidemargin}{20mm}
+\setlength{\parskip}{5mm}
+\setlength{\textheight}{25.7cm}
+\setlength{\textwidth}{17cm}
+\setlength{\parindent}{0cm}
+
+\makeindex
+
+\begin{document}
+
+\begin{titlepage}
+\centering
+\mbox{\ }
+\vspace{5cm}
+
+{\Huge \LaTeX}
+
+\vspace{1cm}
+
+{\huge Beyond the Basics}
+\end{titlepage}
+
+\section*{Introduction}
+\LaTeX is an advanced document production system especially designed to typeset mathematically based documents.  \LaTeX\ is effectively a programming language based on the \TeX\ document production system which has been around for over $20$ years.
+
+How does it compare to, say, Microsoft Word?  Well, \LaTeX\ was designed from the ground up for document production.  It can handle documents of arbitrary size and has many advanced features not avaliable in any other package.  Its benefits include:
+\begin{itemize}
+\item Arbitrary document size
+\item Cross platform
+\item Basic documents are TEXT files
+\item Highly advanced macros
+\item Massive archive of avaliable add-ons and styles
+\item Ideal for documents with large amounts of mathematics, figures and tables
+\item Advanced referencing and citation capabilities
+\item Easy to use
+\item Produce press quality documents
+\item Used by journals and publishing houses around the world
+\item FREE
+\end{itemize}
+
+\LaTeX\ provides you with complete control over how your document will look and can be compiled into almost any format: PDF; Postscript; HTML; GIF etc.  There are free implementation of \LaTeX\ on PC's, Mac's, Unix and almost all operating systems, all you need do is download one.
+
+Once you have a version of \LaTeX\ on your computer you are able to write documents in almost any editor: MS Word; Word Pad; Text editor; WinEDT; Emacs; VI; and even an email program if you want.  With your document finished, you simply run it through the LaTeX engine and out pops your PDF or Postscript document, ready for publishing.
+
+
+
+\section*{Beyond the basics}
+This course aims to take you beyond the basic \LaTeX\ features and introduce many advanced features.  It assumes you are familiar with \LaTeX\ or have completed the ``Fundamentals'' course.
+
+
+
+\section*{Extra document features}
+\LaTeX\ allows the easy creation of a table of contents, list of figures and list of tables.  These are automatically updated when you build your document and are the same as your chapter, section, subsection headings and table/list captions.  To build these lists simply include \verb+\tableofcontents+, \verb+\listoffigures+ and \verb+\listoftables+ at the beginning of your document
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+\begin{verbatim}
+\documentclass[12pt, a4paper]{book}
+
+\begin{document}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+Another useful feature of \LaTeX\ is the footnote \footnote{which appear under your text on the same page} produced by \\
+\verb+\footnote{which appear under your text on the same page}+
+
+
+
+\section*{Minipages and boxes}
+Often you need to create a text box which has all the features of a single character.  This can be done with minipages and boxes.
+\begin{center}
+\begin{minipage}[t]{7cm}
+This is \begin{minipage}[c]{2cm}
+ a minipage with a footnote
+ \footnote{which goes in the minipage}
+\end{minipage}
+and 
+\begin{minipage}[b]{2cm}
+ another minipage.  Notice how they
+ are aligned
+\end{minipage}
+
+ with normal text.
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+This is \begin{minipage}[c]{2cm}
+ a minipage with a footnote
+ \footnote{which goes in the minipage}
+\end{minipage}
+and 
+\begin{minipage}[b]{2cm}
+ another minipage.  Notice how they
+ are aligned
+\end{minipage}
+
+ with normal text.
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+There is also the
+\begin{center}
+\begin{minipage}[t]{7cm}
+\mbox{simple box} \\
+\makebox[5cm][c]{make box} \\
+\fbox{simple frame box} \\
+\framebox[4cm][r]{frame box} \\
+and many more
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+\mbox{simple box}
+\makebox[5cm][c]{make box}
+\fbox{simple frame box}
+\framebox[4cm][r]{frame box}
+and many more
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+
+
+\section*{More equations}
+Want more equations?  Try writing these in MSWord and have them looking so good.
+\begin{eqnarray}
+\mathcal{F} & = & a x + \left\{
+\begin{array}{lclr}
+b x^{y^{2}} + c & |x| \ll |y|, & x \ni \Re & \mbox{condition 1} \\
+b y^{\psi y^{2}} + \alpha & |x| \gg |y|, & x \ni \Im & \mbox{condition 2} \\
+b \frac{1}{x \times y} + \beta & |x| \approx |y|, & x \ni \Re & \mbox{condition 3}
+\end{array} \right. \nonumber \\
+ & \Longrightarrow & \prod_{i=0}^{N} \left\{ \underbrace{\frac{\overbrace{\left|\begin{array}{cc}x & y^{2} \\ x^{2} & \underbrace{y}_{i \ldots \infty}\end{array}\right|}^{\begin{array}{cc}x & y^{2} \\ x^{2} & \underbrace{y}_{i \ldots \infty} \end{array}}}{x + \int_{0}^{\infty} \exp(y^{2}) dy}}_{\mbox{this is a little silly}} \right\} + x + y
+\end{eqnarray}
+
+\begin{verbatim}
+\begin{eqnarray}
+\mathcal{F} & = & a x + \left\{
+    \begin{array}{lclr}
+    b x^{y^{2}} + c & |x| \ll |y|, & x \ni \Re & \mbox{condition 1} \\
+    b y^{\psi y^{2}} + \alpha & |x| \gg |y|, & x \ni \Im & \mbox{condition 2} \\
+    b \frac{1}{x \times y} + \beta & |x| \approx |y|, & x \ni \Re & 
+        \mbox{condition 3}
+    \end{array}\right. \nonumber \\
+ & \Longrightarrow & \prod_{i=0}^{N} \left\{ \underbrace{\frac{\overbrace{
+    \left| \begin{array}{cc}
+        x & y^{2} \\ 
+        x^{2} & \underbrace{y}_{i \ldots \infty}
+    \end{array}\right|
+    }^{\begin{array}{cc}
+        x & y^{2} \\
+        x^{2} & \underbrace{y}_{i \ldots \infty}
+    \end{array}}}
+    {x + \int_{0}^{\infty} \exp(y^{2}) dy}}_{\mbox{this is a little silly}}
+    \right\} + x + y
+\end{eqnarray}
+\end{verbatim}
+
+Regardless of how complex your equations, \LaTeX\ gets them right.
+
+
+
+
+\section*{References, citations and the bibliography}
+\LaTeX has very advanced referencing and citation abilities which are easy to use.  The two commands are \verb+\cite{...}+ and \verb+\ref{...}+ which link into previously defined labels.
+\begin{center}
+\begin{minipage}[t]{7cm}
+\begin{equation}
+x^{y}+1=z
+\label{eq1}
+\end{equation}
+\begin{equation}
+x^{3}+y=\beta
+\label{eq2}
+\end{equation}
+You can now reference Eq. \ref{eq1} with ease anywhere in the document along with Eq. \ref{eq2}.
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+\begin{equation}
+x^{y}+1=z
+\label{eq1}
+\end{equation}
+\begin{equation}
+x^{3}+y=\beta
+\label{eq2}
+\end{equation}
+You can now reference Eq. \ref{eq1}
+with ease anywhere in the document
+along with Eq. \ref{eq2}.
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+\begin{center}
+\begin{minipage}[t]{7cm}
+You can cite documents with easy \cite{bo:lamport} where the citation has been defined in the bibliography \cite{bo:goossens}.
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[t]{7cm}
+\begin{verbatim}
+You can cite documents with easy
+\cite{bo:lamport} where the citation
+has been defined in the
+bibliography \cite{bo:goossens}.
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+Where your references are in the bibliography (see bibliography)
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+\begin{verbatim}
+\begin{thebibliography}{(goossens et al. 1994)}
+\bibitem[Lamport 1994]{bo:lamport} ``\LaTeX\ A Document Preparation
+    System 2nd Edition'', Leslie Lamport,
+    Addison Wesley (1994)
+\bibitem[Goossens \textit{et al.} 1994]{bo:goossens} ``The \LaTeX
+    Companion'', Goossens Mittelbach and Samarin,
+    Addison Wesley (1994)
+\bibitem[CTAN]{web:ctan} \texttt{http://www.ctan.org}
+\end{thebibliography}
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+
+
+\section*{Tables and figures}
+Tables and figures are just like any other environment in \LaTeX.  Before you can use graphics, you need to load an appropriate package
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+\begin{verbatim}
+\documentclass[a4paper,12pt]{book}
+\usepackage{graphics}    % Standard graphics package
+\usepackage{graphicx}    % Enable PDF graphics in pdflatex
+\usepackage{epsfig}      % Enable PS and EPS graphics in latex
+\end{verbatim}
+\end{minipage}
+\end{center}
+
+Now the inclusion of figures and tables is easy
+\begin{table}[!ht]
+\centering
+\begin{tabular}{lc|r}
+this is & the & tabular environment \\
+\hline
+used & inside the & table environment \\
+\end{tabular}
+\caption{This is a floating table}
+\label{tbl1}
+\end{table}
+which is produced by the following
+\begin{verbatim}
+\begin{table}[!ht]
+\centering
+\begin{tabular}{lc|r}
+this is & the & tabular environment \\
+\hline
+used & inside the & table environment \\
+\end{tabular}
+\caption{This is a floating table}
+\label{tbl1}
+\end{table}
+\end{verbatim}
+
+Notice the label in the table, which can be used for referencing Table \ref{tbl1} by \verb+\ref{tbl1}+.  The same goes for figures
+\begin{figure}[!ht]
+\centering
+\epsfig{file=rat1.eps,width=5cm}
+\caption{This is a floating figure}
+\label{fig1}
+\end{figure}
+which is produced by the following
+\begin{verbatim}
+\begin{figure}[!ht]
+\centering
+\epsfig{file=rat1.eps,width=5cm}
+\caption{This is a floating figure}
+\label{fig1}
+\end{figure}
+\end{verbatim}
+
+The figure can also be referenced Fig \ref{fig1} by \verb+\ref{fig1}+.
+
+
+
+\section*{Managing large documents}
+\LaTeX is particularly good at managing large documents since all files are text files and all images etc. are linked to, rather than being embedded in the document.  To help manage documents with many parts chapters and sections, there is the \verb+\include{file}+ command where \verb+file.tex+ is another file containing further \LaTeX commands.
+
+Other useful features to help with large documents
+\begin{itemize}
+\item \verb+\pagebreak+ to force a page break
+\item \verb+\newpage+ to move to a new page
+\item \verb+\clearpage+ to print all figures and tables and start a new page
+\item \verb+\newcommand{cmd}[n][opt]{...}+ to create a new command
+\item \verb+\newenvironment{name}[n]{begin}{end}+ to create a new environment
+\end{itemize}
+
+The management of a large number of bibliography entries is also possible by Bib\TeX\ which is an add-on system to \LaTeX\ used to manage a database of citations and including them into the document.
+
+
+
+\section*{Other resources}
+The ideal reference book for getting started with \LaTeX\ \cite{bo:lamport}
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+\LaTeX\ A Document Preparation System 2nd Edition\\
+Leslie Lamport\\
+Addison Wesley 1994
+\end{minipage}
+\end{center}
+
+The definitive guide to all things \LaTeX\ \cite{bo:goossens}
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+The \LaTeX\ Companion\\
+Goossens Mittelbach Samarin\\
+Addison Wesley 1994
+\end{minipage}
+\end{center}
+
+Large online resources with class files, fonts and distributions \cite{web:ctan}
+\begin{center}
+\begin{minipage}[t]{14.5cm}
+\texttt{http://www.ctan.org}
+\end{minipage}
+\end{center}
+
+\newpage
+
+
+
+\section*{Exercise}
+Write a dummy thesis.  Use the book document class and put each chapter in a separate file, include a bibliography.  Each chapter should have several sections and subsections.  Chapter 1 should demonstrate equations.  Chapter 2 should demonstrate footnotes.  Chapter 3 should demonstrate boxes of various kinds.  Chapter 4 should demonstrate figures (use the \texttt{rat1.eps} file from the latex folder in the course folder).  Chapter 5 should reference the previous chapters, equations, figures and include some citation references.
+
+Finally, try to reproduce some of the side-by-side text shown in this course document.
+
+\begin{verbatim}
+\documentclass[a4paper,12pt]{book}
+\makeindex
+\begin{document}
+\begin{titlepage}
+\Large
+\centering
+    This is a book title page \\
+\vspace{2cm}
+   Which you have complete control over.
+\end{titlepage}
+\tableofcontents
+\chapter{Introduction}
+    This is the introduction
+\chapter{Middle}
+    Stuff goes here
+\chapter{End}
+    We finish up
+\end{document}
+\end{verbatim}
+
+
+
+\begin{thebibliography}{(goossens et al. 1994)}
+\bibitem[Lamport 1994]{bo:lamport} ``\LaTeX\ A Document Preparation System 2nd Edition'', Leslie Lamport, Addison Wesley (1994)
+\bibitem[Goossens \textit{et al.} 1994]{bo:goossens} ``The \LaTeX\ Companion'', Goossens Mittelbach and Samarin, Addison Wesley (1994)
+\bibitem[CTAN]{web:ctan} \texttt{http://www.ctan.org}
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,52 @@
+\documentclass[a4paper,12pt,twocolumn]{article}
+
+\setlength{\voffset}{-25.4mm}
+\setlength{\hoffset}{-25.4mm}
+
+\setlength{\topmargin}{20mm}
+\setlength{\oddsidemargin}{20mm}
+\setlength{\evensidemargin}{20mm}
+\setlength{\textheight}{25.7cm}
+\setlength{\textwidth}{17cm}
+
+\begin{document}
+\author{Stuart Midgley}
+\title{Introduction to the \LaTeX\ article class}
+\maketitle
+\begin{abstract}
+This is a demonstration article written by Stuart Midgley for the Information Literacy Program (ILP).  This article is broken into three parts.  The first will guide the beginner Latex user through basic equations, layout and other useful information.
+
+The second section will introduce the Latex user to very simple Latex concepts such as font sizes and other rather useful features.  While the third section will pull the whole document together.
+\end{abstract}
+\section{Introduction}
+\LaTeX\ is a powerful document production system used by scientists and writers the world over.  Its beautiful typeset equations are the envy of all other word processors and typesetting programs.
+
+For example, consider the interaction between two charged particles,
+\begin{equation}
+\vec{F} = \frac{q_{1} q_{2}}{4 \pi \epsilon_{0}{r}^{3}}\vec{r}
+\end{equation}
+where $\vec{r}$ is the position vector between the two particles.  This equation can be expanded to give the force on $n$ particles quite easily
+\begin{equation}
+\vec{F}_{j} = \sum_{i=1}^{n} \left( \frac{q_{j} q_{i}}{4 \pi \epsilon_{0} r_{ij}^{3}} \vec{r}_{ij} \right)
+\end{equation}
+
+You can even enter a multi line equation
+\begin{eqnarray}
+\phi_{n+1}(\eta) &  = & 2 x \phi_{n}(\eta)  + \phi_{n-1}(\eta)  \\
+\phi_{1}(\eta)  & = & \eta  \\
+\phi_{0}(\eta)  & = & 1
+\end{eqnarray}
+or and inline equation $\phi_{n+1}(\eta) = 2 x \phi_{n}(\eta)  + \phi_{n-1}(\eta)$ which is exciting.
+
+Of course you may want to use specific symbols \dag\ \ddag\ \S\ \P\ \oe\ \`{o} \^{o} \u{o} \t{oo} \b{o} just to make the document look a bit snazzy.
+
+Its also worth noting how well \LaTeX\ jusifies your document.  It always looks good.
+
+\section{Middle}
+More importantly, you may want to \textit{highlight} some of your text with nice ``quotes'' and {\Large \textbf{a bigger bolder font}} all of which \LaTeX\ supports.  Of course, \LaTeX\ doesn't help with the grammar or spelling.  Your text editor needs to handle that.
+
+Another important feature of \LaTeX\ is the class file.  The class file specifies everything about a document and ensures a consistent look and feel to your document all the time.  It has often been said, that no document looks as good as a \LaTeX\ document.  The fonts always look good, the document just looks professional.  See if you can make a document looks this good in Word.
+
+\section{Conclusion}
+Not much to put here.  Except, that a document written in Latex is very portable.  You should be able to email your text file to anyone in the world and they can recreate your document perfectly, regardless of platform.  Also, since the document is just a text file it is nice and small.
+\end{document}
